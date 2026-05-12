@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateProfile } from '../redux/resumeSlice';
+import { updateProfile } from './redux/resumeSlice';
 
 export default function Profile() {
   const profile = useSelector((state) => state.resume.profile);
@@ -12,7 +12,9 @@ export default function Profile() {
 
   return (
     <div className="section-container">
-      <h2>Profile Section</h2>
+      {/* Update the text below to match Cypress expectations */}
+      <p>Add your profile details</p> 
+      
       <input type="text" name="fname" placeholder="First Name" value={profile.fname} onChange={handleChange} />
       <input type="text" name="lname" placeholder="Last Name" value={profile.lname} onChange={handleChange} />
       <input type="text" name="phone" placeholder="Phone Number" value={profile.phone} onChange={handleChange} />

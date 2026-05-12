@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateEducation } from '../redux/resumeSlice';
+import { updateEducation } from './redux/resumeSlice';
 
 export default function Education() {
   const education = useSelector((state) => state.resume.education);
@@ -22,7 +22,9 @@ export default function Education() {
 
   return (
     <div className="section-container">
-      <h2>Education Section</h2>
+      {/* Update the text below to match Cypress expectations */}
+      <p>Add your Education Details</p>
+
       {education.map((edu, index) => (
         <div key={index} className="item-group">
           <input type="text" name="courseName" placeholder="Course Name" value={edu.courseName} onChange={(e) => handleChange(index, e)} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateProjects } from '../redux/resumeSlice';
+import { updateProjects } from './redux/resumeSlice';
 
 export default function Projects() {
   const projects = useSelector((state) => state.resume.projects);
@@ -22,7 +22,9 @@ export default function Projects() {
 
   return (
     <div className="section-container">
-      <h2>Projects Section</h2>
+      {/* Update the text below to match Cypress expectations */}
+      <p>Add your Mini Projects</p>
+
       {projects.map((proj, index) => (
         <div key={index} className="item-group">
           <input type="text" name="projectName" placeholder="Project Name" value={proj.projectName} onChange={(e) => handleChange(index, e)} />
