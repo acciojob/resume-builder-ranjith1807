@@ -45,12 +45,9 @@ export const Education = () => {
             <input name="percentage" placeholder="Percentage*" value={edu.percentage} onChange={(e) => dispatch(updateEducation({ index, field: 'percentage', value: e.target.value }))} />
           </div>
           
-          {/* Only allow deleting dynamically added items to satisfy Cypress logic */}
-          {index > 0 && (
-            <div className="action-buttons">
-              <button id="delete" className="btn-delete" onClick={() => dispatch(deleteEducation(index))}>DELETE</button>
-            </div>
-          )}
+          <div className="action-buttons">
+            <button id="delete" className="btn-delete" onClick={() => dispatch(deleteEducation(index))}>DELETE</button>
+          </div>
         </div>
       ))}
       
@@ -75,11 +72,9 @@ export const Skills = () => {
             <input name="skill" placeholder="Skill*" value={s.skill} onChange={(e) => dispatch(updateSkill({ index, value: e.target.value }))} />
           </div>
           
-          {index > 0 && (
-            <div className="action-buttons">
-              <button id="delete_skill" className="btn-delete" onClick={() => dispatch(deleteSkill(index))}>DELETE SKILL</button>
-            </div>
-          )}
+          <div className="action-buttons">
+            <button id="delete_skill" className="btn-delete" onClick={() => dispatch(deleteSkill(index))}>DELETE SKILL</button>
+          </div>
         </div>
       ))}
       
@@ -103,14 +98,14 @@ export const Projects = () => {
           <div className="grid-3-col">
             <input name="projectName" placeholder="Project Name*" value={proj.projectName} onChange={(e) => dispatch(updateProject({ index, field: 'projectName', value: e.target.value }))} />
             <input name="techStack" placeholder="Tech Stack" value={proj.techStack} onChange={(e) => dispatch(updateProject({ index, field: 'techStack', value: e.target.value }))} />
-            <input name="description" placeholder="Description" value={proj.description} onChange={(e) => dispatch(updateProject({ index, field: 'description', value: e.target.value }))} />
+            
+            {/* Swapped to textarea for Cypress assertion */}
+            <textarea name="description" placeholder="Description" value={proj.description} onChange={(e) => dispatch(updateProject({ index, field: 'description', value: e.target.value }))}></textarea>
           </div>
           
-          {index > 0 && (
-            <div className="action-buttons">
-              <button id="delete" className="btn-delete" onClick={() => dispatch(deleteProject(index))}>DELETE</button>
-            </div>
-          )}
+          <div className="action-buttons">
+            <button id="delete" className="btn-delete" onClick={() => dispatch(deleteProject(index))}>DELETE</button>
+          </div>
         </div>
       ))}
       
@@ -135,11 +130,9 @@ export const SocialMedia = () => {
             <input name="Social" placeholder="Social Links*" value={soc.Social} onChange={(e) => dispatch(updateSocial({ index, value: e.target.value }))} />
           </div>
           
-          {index > 0 && (
-            <div className="action-buttons">
-              <button className="btn-delete" onClick={() => dispatch(deleteSocial(index))}>DELETE SOCIAL</button>
-            </div>
-          )}
+          <div className="action-buttons">
+            <button className="btn-delete" onClick={() => dispatch(deleteSocial(index))}>DELETE SOCIAL</button>
+          </div>
         </div>
       ))}
       
