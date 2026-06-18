@@ -1,76 +1,62 @@
-/* --- Global Styles --- */
+/* --- Global Background (Dark) --- */
 body {
   font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff; /* Set background to white for full screen */
+  background-color: #121212;
   margin: 0;
-  padding: 0; /* Removed padding to let app touch the edges */
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
 }
 
+/* --- Main Container (White Card) --- */
 .App {
   width: 100%;
-  max-width: 100%; /* Removed the 800px limit */
-  min-height: 100vh; /* Stretch to full height of the viewport */
+  max-width: 800px;
   background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  box-shadow: none; /* Removed shadow since it's full screen */
+  min-height: 550px;
 }
-
-/* --- Optional: Center the content so inputs don't stretch infinitely on wide monitors --- */
-.stepper, 
-.App > div:not(.stepper) {
-  max-width: 1200px; /* Keeps the content at a readable width */
-  margin: 0 auto;    /* Centers the content horizontally */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* (Keep the rest of your CSS below this exactly the same...) */
 
 /* --- Header --- */
 h1 {
-  background-color: #e91e63;
+  background-color: #f50057; /* Pink */
   color: white;
   text-align: center;
   margin: 0;
   padding: 20px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-h2 {
-  color: #666;
-  text-align: center;
-  font-size: 14px;
-  margin: 20px 0 30px 0;
+  font-size: 20px;
   font-weight: 500;
 }
 
-/* --- Stepper (Progress Bar) --- */
+.form-title {
+  color: #666;
+  text-align: center;
+  font-size: 14px;
+  margin: 30px 0 20px 0;
+}
+
+/* --- Stepper --- */
 .stepper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .step-item {
   display: flex;
   align-items: center;
   font-size: 11px;
-  color: #888;
-  font-weight: bold;
-}
-
-.step-item.active {
-  color: #555;
+  color: #999;
 }
 
 .step-circle {
-  background-color: #888;
+  background-color: #999;
   color: white;
   border-radius: 50%;
   width: 20px;
@@ -78,51 +64,58 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.step-item.active {
+  color: #333;
 }
 
 .step-item.active .step-circle {
-  background-color: #5c6bc0; /* Purple/Blue for active step */
+  background-color: #3f51b5; /* Blue */
 }
 
 .step-line {
   flex-grow: 1;
   height: 1px;
-  background-color: #ddd;
-  margin: 0 10px;
+  background-color: #e0e0e0;
+  margin: 0 15px;
 }
 
-/* --- Form Container & Inputs --- */
-.App > div:not(.stepper) {
-  padding: 0 40px 20px 40px;
+/* --- Form Grids & Inputs --- */
+.form-container {
+  padding: 0 40px;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 }
 
-/* 2-Column Grid (Profile & Education) */
-.App > div > div:not(.button-group):not(.preview-left):not(.preview-right) {
+.grid-2-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 20px;
   margin-bottom: 20px;
   align-items: center;
 }
 
-/* 1-Column Grid Overrides (Skills, Social) */
-.single-col-input {
-  grid-template-columns: 1fr !important;
+.grid-3-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: center;
 }
 
-/* 3-Column Grid Overrides (Projects) */
-.three-col-input {
-  grid-template-columns: 1fr 1fr 1fr !important;
+.grid-1-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 input, textarea {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #e0e0e0;
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 13px;
@@ -131,125 +124,142 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  border-color: #e91e63;
+  border-color: #f50057;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 40px;
-}
-
-/* --- Action Buttons --- */
-.button-group {
+/* --- Action Buttons (Add/Delete inside forms) --- */
+.action-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 5px;
-  grid-column: 1 / -1; 
+  margin-top: 10px;
+  grid-column: 1 / -1;
 }
 
-button {
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 11px;
-  text-transform: uppercase;
-  border-radius: 2px;
-  cursor: pointer;
-  border: none;
-  padding: 10px 15px;
-}
-
-/* Blue Add Buttons */
-#add_education, #add_skill, #add_project, #add_social {
+.btn-add {
   background-color: #3f51b5;
   color: white;
-  width: auto;
-  align-self: center;
-  margin: 10px auto;
-  display: block;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
 }
 
-/* Delete Buttons */
-#delete, #delete_skill, button:contains("Delete") {
+.btn-delete {
   background-color: transparent;
-  color: #aaa;
-  border: 1px solid #eaeaea;
+  color: #ccc;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
 }
 
-/* --- Navigation Buttons (Footer) --- */
-div[style*="marginTop"] {
-  margin-top: auto !important; 
-  padding-top: 20px;
-  border-top: 1px solid #eee;
+/* --- Footer Navigation --- */
+.makeStyles-footer-15 {
+  margin-top: auto;
+  padding: 20px 0;
+  border-top: 1px solid #f0f0f0;
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.MuiButton-contained {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #next, #save_continue {
-  background-color: #e91e63;
+  background-color: #f50057;
   color: white;
 }
 
 #back {
   background-color: transparent;
-  color: #888;
+  color: #999;
 }
 
 /* --- Final Resume Preview --- */
-.preview-header {
+.preview-container {
+  padding: 20px 40px;
+}
+
+.preview-top {
   text-align: center;
-  padding-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.preview-header button {
-  background-color: transparent;
-  color: #333;
-  margin: 0 5px;
-  font-weight: bold;
+.preview-top h3 {
+  font-size: 14px;
+  margin-bottom: 15px;
 }
 
-#resume-preview {
+.preview-controls {
   display: flex;
-  flex-direction: row;
-  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.preview-left {
+.preview-controls-row {
+  display: flex;
+  gap: 15px;
+}
+
+.preview-controls button {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+}
+
+.btn-download {
+  background-color: #f50057 !important;
+  color: white !important;
+  padding: 8px 20px !important;
+  border-radius: 4px;
+}
+
+.resume-layout {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.resume-left {
   width: 25%;
   padding-right: 20px;
-  border-right: 1px solid #eee;
 }
 
-.preview-right {
+.resume-right {
   width: 75%;
-  padding-left: 20px;
+  padding-left: 30px;
 }
 
-#resume-preview h3 {
-  font-size: 24px;
-  margin: 0 0 10px 0;
-  color: #333;
-}
-
-#resume-preview h4 {
+.resume-layout h4 {
   font-size: 16px;
-  color: #333;
+  margin-bottom: 10px;
   border-bottom: 1px solid #eee;
   padding-bottom: 5px;
-  margin-top: 20px;
-  margin-bottom: 10px;
 }
 
-#resume-preview p {
+.resume-layout p, .resume-layout li {
+  font-size: 12px;
+  color: #555;
   margin: 4px 0;
-  font-size: 13px;
-  color: #555;
 }
 
-#resume-preview ul {
-  padding-left: 15px;
-  margin: 5px 0;
-  font-size: 13px;
-  color: #555;
+.resume-layout h2 {
+  margin: 0 0 15px 0;
+  font-size: 24px;
+  color: #333;
 }

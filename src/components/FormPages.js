@@ -27,7 +27,7 @@ export const Profile = () => {
         <label style={{gridColumn: '1/-1', fontSize: '14px', color: '#666'}}>Profile Image URL</label>
         <input name="url" placeholder="Image URL (e.g., https://...)" value={data.url} onChange={handleChange} style={{gridColumn: '1/-1'}} />
       </div>
-      <NavigationButtons />
+     
     </div>
   );
 };
@@ -50,7 +50,7 @@ export const Education = () => {
         </div>
       ))}
       <button id="add_education" onClick={() => dispatch(addEducation())}>Add Education</button>
-      <NavigationButtons />
+    
     </div>
   );
 };
@@ -72,7 +72,7 @@ export const Skills = () => {
         </div>
       ))}
       <button id="add_skill" onClick={() => dispatch(addSkill())}>Add Skill</button>
-      <NavigationButtons />
+      
     </div>
   );
 };
@@ -96,7 +96,7 @@ export const Projects = () => {
         </div>
       ))}
       <button id="add_project" onClick={() => dispatch(addProject())}>Add Project</button>
-      <NavigationButtons />
+    
     </div>
   );
 };
@@ -118,21 +118,8 @@ export const SocialMedia = () => {
         </div>
       ))}
       <button id="add_social" onClick={() => dispatch(addSocial())}>Add Social</button>
-      <NavigationButtons />
+      
     </div>
   );
 };
 
-// --- NAVIGATION COMPONENT ---
-const NavigationButtons = () => {
-  const dispatch = useDispatch();
-  const step = useSelector(state => state.resume.step);
-  
-  return (
-    <div style={{ marginTop: 'auto' }}>
-      {step > 1 && <button id="back" onClick={() => dispatch(prevStep())}>Back</button>}
-      {step < 5 && <button id="next" onClick={() => dispatch(nextStep())}>Next</button>}
-      {step === 5 && <button id="save_continue" onClick={() => dispatch(nextStep())}>Save and Continue</button>}
-    </div>
-  );
-};
