@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'; // Import the Provider
-import { store } from './redux/store';  // Import your created store
-import App from './components/App';     // Adjust path based on your folder structure
+import ReactDOM from 'react-dom'; // Changed this line
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
