@@ -263,3 +263,34 @@ input:focus, textarea:focus {
   font-size: 24px;
   color: #333;
 }
+/* --- Footer Navigation --- */
+.makeStyles-footer-15 {
+  margin-top: auto;
+  padding: 20px 0;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#next, #save_continue {
+  background-color: #f50057;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#back {
+  background-color: transparent;
+  color: #999;
+  border: none;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}

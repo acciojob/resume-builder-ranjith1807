@@ -12,8 +12,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* FIX 1: EXACT MATCH HEADING */}
-      <h1>RESUME GENERATOR</h1> 
+      <h1>RESUME GENERATOR</h1>
       
       {step < 6 && (
         <div className="stepper">
@@ -35,12 +34,31 @@ const App = () => {
       {step === 5 && <SocialMedia />}
       {step === 6 && <Preview />}
 
-      {/* FIX 2 & 3: PERSISTENT FOOTER WITH MUI CLASSES */}
+      {/* FIXED FOOTER: Shows Save/Continue on all pages, only ONE MuiButton-contained class */}
       {step < 6 && (
-        <div className="makeStyles-footer-15" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #eee', display: 'flex', justifyContent: 'center', gap: '10px' }}>
-          {step > 1 && <button id="back" className="MuiButton-contained" onClick={() => dispatch(prevStep())}>Back</button>}
-          {step < 5 && <button id="next" className="MuiButton-contained" onClick={() => dispatch(nextStep())}>Next</button>}
-          {step === 5 && <button id="save_continue" className="MuiButton-contained" onClick={() => dispatch(nextStep())}>Save and Continue</button>}
+        <div className="makeStyles-footer-15">
+          <button 
+            id="back" 
+            onClick={() => dispatch(prevStep())} 
+            style={{ visibility: step > 1 ? 'visible' : 'hidden' }}
+          >
+            BACK
+          </button>
+          
+          <button 
+            id="next" 
+            className="MuiButton-contained" 
+            onClick={() => dispatch(nextStep())}
+          >
+            NEXT
+          </button>
+          
+          <button 
+            id="save_continue" 
+            onClick={() => dispatch(nextStep())}
+          >
+            SAVE AND CONTINUE
+          </button>
         </div>
       )}
     </div>
