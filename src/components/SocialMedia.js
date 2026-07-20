@@ -30,8 +30,16 @@ export const SocialMedia = () => {
             </Grid>
           </Grid>
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
-            <span id="delete" onClick={() => dispatch({ type: 'DELETE_SOCIAL', index })}>
-              <Button id="delete_social" type="button" variant="outlined" onClick={() => dispatch({ type: 'DELETE_SOCIAL', index })}>DELETE SOCIAL</Button>
+            <span id="delete">
+              <Button
+                id="delete_social"
+                type="button"
+                variant="outlined"
+                disabled={socialMedia.length <= 1}
+                onClick={() => dispatch({ type: 'DELETE_SOCIAL', index })}
+              >
+                DELETE SOCIAL
+              </Button>
             </span>
             <Button id="add_social" type="button" variant="contained" style={{ backgroundColor: '#3f51b5', color: '#fff' }} onClick={() => dispatch({ type: 'ADD_SOCIAL' })}>ADD SOCIAL</Button>
           </div>

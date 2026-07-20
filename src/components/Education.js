@@ -43,7 +43,15 @@ export const Education = () => {
             </Grid>
           </Grid>
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
-            <Button id="delete" type="button" variant="outlined" onClick={() => dispatch({ type: 'DELETE_EDUCATION', index })}>DELETE</Button>
+            <Button
+              id="delete"
+              type="button"
+              variant="outlined"
+              disabled={education.length <= 1}
+              onClick={() => dispatch({ type: 'DELETE_EDUCATION', index })}
+            >
+              DELETE
+            </Button>
             <Button id="add_education" type="button" variant="contained" style={{ backgroundColor: '#3f51b5', color: '#fff' }} onClick={() => dispatch({ type: 'ADD_EDUCATION' })}>ADD EDUCATION</Button>
           </div>
         </div>

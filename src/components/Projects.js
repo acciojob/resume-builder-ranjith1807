@@ -40,9 +40,17 @@ export const Projects = () => {
             </Grid>
           </Grid>
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
-            <span id="delete_project" onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}>
-              <span id="delete_projects" onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}>
-                <Button id="delete" type="button" variant="outlined" onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}>DELETE</Button>
+            <span id="delete_project">
+              <span id="delete_projects">
+                <Button
+                  id="delete"
+                  type="button"
+                  variant="outlined"
+                  disabled={projects.length <= 1}
+                  onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}
+                >
+                  DELETE
+                </Button>
               </span>
             </span>
             <Button id="add_project" type="button" variant="contained" style={{ backgroundColor: '#3f51b5', color: '#fff' }} onClick={() => dispatch({ type: 'ADD_PROJECT' })}>ADD PROJECT</Button>
