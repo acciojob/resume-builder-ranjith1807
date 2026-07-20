@@ -83,6 +83,11 @@ const rootReducer = (state = initialState, action) => {
           idx === action.index ? { ...item, Social: action.value } : item
         )
       };
+    case 'DELETE_SOCIAL':
+      return {
+        ...state,
+        socialMedia: state.socialMedia.filter((_, idx) => idx !== action.index)
+      };
 
     case 'LOAD_RESUME':
       return action.payload;

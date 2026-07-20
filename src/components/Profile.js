@@ -33,6 +33,7 @@ export const Profile = () => {
               name="fname"
               value={profile.fname || ''}
               onChange={(e) => handleChange('fname', e.target.value)}
+              inputProps={{ name: 'fname' }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -43,6 +44,7 @@ export const Profile = () => {
               name="lname"
               value={profile.lname || ''}
               onChange={(e) => handleChange('lname', e.target.value)}
+              inputProps={{ name: 'lname' }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -53,6 +55,7 @@ export const Profile = () => {
               name="phone"
               value={profile.phone || ''}
               onChange={(e) => handleChange('phone', e.target.value)}
+              inputProps={{ name: 'phone' }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -63,13 +66,14 @@ export const Profile = () => {
               name="address"
               value={profile.address || ''}
               onChange={(e) => handleChange('address', e.target.value)}
+              inputProps={{ name: 'address' }}
             />
           </Grid>
           <Grid item xs={12}>
             <Typography variant="subtitle2" gutterBottom style={{ color: '#666' }}>
               Profile Image
             </Typography>
-            <Box display="flex" alignItems="center" gridGap="10px" style={{ border: '1px solid #c4c4c4', borderRadius: '4px', padding: '10px', backgroundColor: '#fff' }}>
+            <Box display="flex" alignItems="center" style={{ border: '1px solid #c4c4c4', borderRadius: '4px', padding: '10px', backgroundColor: '#fff' }}>
               <input
                 type="file"
                 name="url"

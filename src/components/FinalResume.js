@@ -35,7 +35,6 @@ export const FinalResume = () => {
         </Button>
       </Box>
 
-      {/* Document Output Preview */}
       <Paper style={{ padding: '40px', textAlign: 'left', maxWidth: '750px', margin: '0 auto', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', backgroundColor: '#fff' }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="20px">
           <Box flex="1">
@@ -59,7 +58,6 @@ export const FinalResume = () => {
         <Divider style={{ margin: '20px 0' }} />
 
         <Box display="flex">
-          {/* Left Column: Skills & Social */}
           <Box width="35%" paddingRight="20px" borderRight="1px solid #eee">
             <Typography variant="h6" style={{ fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>
               Skills
@@ -86,7 +84,6 @@ export const FinalResume = () => {
             </ul>
           </Box>
 
-          {/* Right Column: Education & Mini Projects */}
           <Box width="65%" paddingLeft="20px">
             <Typography variant="h6" style={{ fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>
               Education
