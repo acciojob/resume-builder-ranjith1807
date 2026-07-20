@@ -9,7 +9,7 @@ import { SocialMedia } from './components/SocialMedia';
 import { FinalResume } from './components/FinalResume';
 
 const useStyles = makeStyles((theme) => ({
-  footer: {
+  navigation: {
     display: 'flex',
     justifyContent: 'center',
     gap: '15px',
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const fallbackFooterClasses = "makeStyles-footer-1 makeStyles-footer-2 makeStyles-footer-3 makeStyles-footer-4 makeStyles-footer-5 makeStyles-footer-6 makeStyles-footer-7 makeStyles-footer-8 makeStyles-footer-9 makeStyles-footer-10 makeStyles-footer-11 makeStyles-footer-12 makeStyles-footer-13 makeStyles-footer-14 makeStyles-footer-15 makeStyles-footer-16 makeStyles-footer-17 makeStyles-footer-18 makeStyles-footer-19 makeStyles-footer-20";
 const steps = ['Profile Section', 'Education Section', 'Skills Sector', 'Mini Project', 'Social'];
 
 export default function App() {
@@ -62,7 +61,7 @@ export default function App() {
           </Box>
 
           {activeStep < 5 && (
-            <div className={`${classes.footer} ${fallbackFooterClasses}`}>
+            <div className={classes.navigation}>
               <Button
                 id="back"
                 variant="text"
