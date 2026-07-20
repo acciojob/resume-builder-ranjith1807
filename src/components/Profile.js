@@ -1,25 +1,85 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateProfile } from './redux/resumeSlice';
+import { TextField, Grid, Box, Typography } from '@material-ui/core';
 
-export default function Profile() {
-  const profile = useSelector((state) => state.resume.profile);
+export const Profile = () => {
+  const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    dispatch(updateProfile({ [e.target.name]: e.target.value }));
+  const handleChange = (field, value) => {
+    dispatch({ type: 'UPDATE_PROFILE', field, value });
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const fileUrl = URL.createObjectURL(e.target.files[0]);
+      handleChange('url', fileUrl);
+    }
   };
 
   return (
-    <div className="section-container">
-      {/* Update the text below to match Cypress expectations */}
-      <p>Add your profile details</p> 
-      
-      <input type="text" name="fname" placeholder="First Name" value={profile.fname} onChange={handleChange} />
-      <input type="text" name="lname" placeholder="Last Name" value={profile.lname} onChange={handleChange} />
-      <input type="text" name="phone" placeholder="Phone Number" value={profile.phone} onChange={handleChange} />
-      <input type="text" name="address" placeholder="Address" value={profile.address} onChange={handleChange} />
-      <input type="file" name="url" onChange={(e) => dispatch(updateProfile({ url: URL.createObjectURL(e.target.files[0]) }))} />
+    <div>
+      <Typography variant="h6" align="center" gutterBottom style={{ marginBottom: '20px', color: '#666' }}>
+        Add your profile details
+      </Typography>
+
+      <Box style={{ marginBottom: '20px' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="First Name"
+              name="fname"
+              value={profile.fname || ''}
+              onChange={(e) => handleChange('fname', e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Last Name"
+              name="lname"
+              value={profile.lname || ''}
+              onChange={(e) => handleChange('lname', e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Phone Number"
+              name="phone"
+              value={profile.phone || ''}
+              onChange={(e) => handleChange('phone', e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Address"
+              name="address"
+              value={profile.address || ''}
+              onChange={(e) => handleChange('address', e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="subtitle2" gutterBottom style={{ color: '#666' }}>
+              Profile Image
+            </Typography>
+            <Box display="flex" alignItems="center" gridGap="10px" style={{ border: '1px solid #c4c4c4', borderRadius: '4px', padding: '10px', backgroundColor: '#fff' }}>
+              <input
+                type="file"
+                name="url"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
   );
-}
+};

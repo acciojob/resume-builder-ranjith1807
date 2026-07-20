@@ -1,68 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextStep, prevStep } from './redux/resumeSlice';
-import { Profile, Education, Skills, Projects, SocialMedia } from './components/FormPages';
-import Preview from './components/Preview';
-import './App.css';
+import { Button, Stepper, Step, StepLabel, Container, Paper, Typography, Box } from '@material-ui/core';
+import { Profile } from './components/Profile';
+import { Education } from './components/Education';
+import { Skills } from './components/Skills';
+import { Projects } from './components/Projects';
+import { SocialMedia } from './components/SocialMedia';
+import { FinalResume } from './components/FinalResume';
 
-const App = () => {
-  const step = useSelector(state => state.resume.step);
+const steps = ['Profile Section', 'Education Section', 'Skills Sector', 'Mini Project', 'Social'];
+
+export default function App() {
+  const [activeStep, setActiveStep] = useState(0);
+  const state = useSelector((s) => s);
   const dispatch = useDispatch();
-  const stepsList = ["Profile Section", "Education Section", "Skills Sector", "Mini Project", "Social"];
+
+  const handleNext = () => setActiveStep((prev) => Math.min(prev + 1, 5));
+  const handleBack = () => setActiveStep((prev) => Math.max(prev - 1, 0));
+
+  const handleSaveToDatabase = () => {
+    localStorage.setItem('saved_resume', JSON.stringify(state));
+    alert('Resume saved successfully!');
+  };
 
   return (
-    <div className="App">
-      <h1>RESUME GENERATOR</h1>
-      
-      {step < 6 && (
-        <div className="stepper">
-          {stepsList.map((s, i) => (
-            <React.Fragment key={i}>
-              <span className={step >= i + 1 ? 'step-item active' : 'step-item'}>
-                <div className="step-circle">{i + 1}</div> {s}
-              </span>
-              {i < 4 && <div className="step-line"></div>}
-            </React.Fragment>
-          ))}
-        </div>
-      )}
+    <div style={{ backgroundColor: '#f5f5f5', minHeight: '100vh', paddingBottom: '40px' }}>
+      {/* Magenta Header Banner */}
+      <Box style={{ backgroundColor: '#ff0055', padding: '15px 0', textAlign: 'center', color: '#fff' }}>
+        <Typography variant="h5" style={{ fontWeight: 'bold' }}>RESUME GENERATOR</Typography>
+      </Box>
 
-      {step === 1 && <Profile />}
-      {step === 2 && <Education />}
-      {step === 3 && <Skills />}
-      {step === 4 && <Projects />}
-      {step === 5 && <SocialMedia />}
-      {step === 6 && <Preview />}
+      <Container maxWidth="md" style={{ marginTop: '20px' }}>
+        <Paper style={{ padding: '20px' }}>
+          {/* Progress Stepper */}
+          {activeStep < 5 && (
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          )}
 
-      {/* FIXED FOOTER: Shows Save/Continue on all pages, only ONE MuiButton-contained class */}
-      {step < 6 && (
-        <div className="makeStyles-footer-15">
-          <button 
-            id="back" 
-            onClick={() => dispatch(prevStep())} 
-            style={{ visibility: step > 1 ? 'visible' : 'hidden' }}
-          >
-            BACK
-          </button>
-          
-          <button 
-            id="next" 
-            className="MuiButton-contained" 
-            onClick={() => dispatch(nextStep())}
-          >
-            NEXT
-          </button>
-          
-          <button 
-            id="save_continue" 
-            onClick={() => dispatch(nextStep())}
-          >
-            SAVE AND CONTINUE
-          </button>
-        </div>
-      )}
+          {/* Page Views */}
+          <Box style={{ margin: '30px 0' }}>
+            {activeStep === 0 && <Profile />}
+            {activeStep === 1 && <Education />}
+            {activeStep === 2 && <Skills />}
+            {activeStep === 3 && <Projects />}
+            {activeStep === 4 && <SocialMedia />}
+            {activeStep === 5 && <FinalResume />}
+          </Box>
+
+          {/* Navigation Buttons (Screenshots 189-193) */}
+          {activeStep < 5 && (
+            <Box display="flex" justifyContent="center" gridGap="10px" marginTop="30px">
+              <Button
+                id="back"
+                variant="text"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+              >
+                BACK
+              </Button>
+              <Button
+                id="next"
+                variant="contained"
+                style={{ backgroundColor: '#ff0055', color: '#fff' }}
+                onClick={handleNext}
+              >
+                NEXT
+              </Button>
+              <Button
+                id="save_continue"
+                variant="contained"
+                style={{ backgroundColor: '#ff0055', color: '#fff' }}
+                onClick={handleSaveToDatabase}
+              >
+                SAVE AND CONTINUE
+              </Button>
+            </Box>
+          )}
+        </Paper>
+      </Container>
     </div>
   );
-};
-
-export default App;
+}
