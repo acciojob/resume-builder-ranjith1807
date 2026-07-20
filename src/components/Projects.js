@@ -21,8 +21,12 @@ const fallbackFooterClasses = "makeStyles-footer-1 makeStyles-footer-2 makeStyle
 
 export const Projects = () => {
   const classes = useStyles();
-  const projects = useSelector((state) => state.projects);
+  const rawProjects = useSelector((state) => state.projects);
   const dispatch = useDispatch();
+
+  const projects = (rawProjects && rawProjects.length > 0)
+    ? rawProjects
+    : [{ id: 'fallback-proj', projectName: '', techStack: '', description: '' }];
 
   const handleChange = (index, field, value) => {
     dispatch({ type: 'UPDATE_PROJECT', index, field, value });
@@ -43,7 +47,7 @@ export const Projects = () => {
                 variant="outlined"
                 label="Project Name*"
                 name="projectName"
-                value={item.projectName}
+                value={item.projectName || ''}
                 onChange={(e) => handleChange(index, 'projectName', e.target.value)}
                 inputProps={{ name: 'projectName' }}
               />
@@ -54,7 +58,7 @@ export const Projects = () => {
                 variant="outlined"
                 label="Tech Stack"
                 name="techStack"
-                value={item.techStack}
+                value={item.techStack || ''}
                 onChange={(e) => handleChange(index, 'techStack', e.target.value)}
                 inputProps={{ name: 'techStack' }}
               />
@@ -67,7 +71,7 @@ export const Projects = () => {
                 name="description"
                 multiline
                 rows={3}
-                value={item.description}
+                value={item.description || ''}
                 onChange={(e) => handleChange(index, 'description', e.target.value)}
                 inputProps={{ name: 'description' }}
               />

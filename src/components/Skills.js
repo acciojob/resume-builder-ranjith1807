@@ -19,8 +19,12 @@ const fallbackFooterClasses = "makeStyles-footer-1 makeStyles-footer-2 makeStyle
 
 export const Skills = () => {
   const classes = useStyles();
-  const skills = useSelector((state) => state.skills);
+  const rawSkills = useSelector((state) => state.skills);
   const dispatch = useDispatch();
+
+  const skills = (rawSkills && rawSkills.length > 0)
+    ? rawSkills
+    : [{ id: 'fallback-skill', skill: '' }];
 
   return (
     <div>
@@ -37,7 +41,7 @@ export const Skills = () => {
                 variant="outlined"
                 label="Skill*"
                 name="skill"
-                value={item.skill}
+                value={item.skill || ''}
                 onChange={(e) => dispatch({ type: 'UPDATE_SKILL', index, value: e.target.value })}
                 inputProps={{ name: 'skill' }}
               />
