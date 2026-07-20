@@ -2,16 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TextField, Button, Grid, Typography, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  instance: {
-    marginBottom: '20px'
-  },
-  footer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '15px',
-    marginTop: '15px'
-  }
+const useStyles = makeStyles(() => ({
+  instance: { marginBottom: '20px' },
+  footer: { display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '15px' }
 }));
 
 const fallbackInstanceClasses = "makeStyles-instance-1 makeStyles-instance-2 makeStyles-instance-3 makeStyles-instance-4 makeStyles-instance-5 makeStyles-instance-6 makeStyles-instance-7 makeStyles-instance-8 makeStyles-instance-9 makeStyles-instance-10 makeStyles-instance-11 makeStyles-instance-12 makeStyles-instance-13 makeStyles-instance-14 makeStyles-instance-15 makeStyles-instance-16 makeStyles-instance-17 makeStyles-instance-18 makeStyles-instance-19 makeStyles-instance-20";
@@ -28,44 +21,17 @@ export const Skills = () => {
 
   return (
     <div>
-      <Typography variant="h6" align="center" gutterBottom style={{ marginBottom: '20px', color: '#666' }}>
-        Add your Skills
-      </Typography>
-
+      <Typography variant="h6" align="center" gutterBottom style={{ marginBottom: '20px', color: '#666' }}>Add your Skills</Typography>
       {skills.map((item, index) => (
         <div key={item.id} className={`${classes.instance} ${fallbackInstanceClasses}`}>
           <Grid container spacing={3} justify="center">
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Skill*"
-                name="skill"
-                value={item.skill || ''}
-                onChange={(e) => dispatch({ type: 'UPDATE_SKILL', index, value: e.target.value })}
-                inputProps={{ name: 'skill' }}
-              />
+              <TextField fullWidth variant="outlined" label="Skill*" name="skill" value={item.skill || ''} onChange={(e) => dispatch({ type: 'UPDATE_SKILL', index, value: e.target.value })} inputProps={{ name: 'skill' }} />
             </Grid>
           </Grid>
-
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
-            <Button
-              id="delete_skill"
-              type="button"
-              variant="outlined"
-              onClick={() => dispatch({ type: 'DELETE_SKILL', index })}
-            >
-              DELETE SKILL
-            </Button>
-            <Button
-              id="add_skill"
-              type="button"
-              variant="contained"
-              style={{ backgroundColor: '#3f51b5', color: '#fff' }}
-              onClick={() => dispatch({ type: 'ADD_SKILL' })}
-            >
-              ADD SKILL
-            </Button>
+            <Button id="delete_skill" type="button" variant="outlined" onClick={() => dispatch({ type: 'DELETE_SKILL', index })}>DELETE SKILL</Button>
+            <Button id="add_skill" type="button" variant="contained" style={{ backgroundColor: '#3f51b5', color: '#fff' }} onClick={() => dispatch({ type: 'ADD_SKILL' })}>ADD SKILL</Button>
           </div>
         </div>
       ))}

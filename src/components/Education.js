@@ -2,18 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TextField, Button, Grid, Typography, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  instance: {
-    marginBottom: '25px',
-    paddingBottom: '15px',
-    borderBottom: '1px solid #eee'
-  },
-  footer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '15px',
-    marginTop: '20px'
-  }
+const useStyles = makeStyles(() => ({
+  instance: { marginBottom: '25px', paddingBottom: '15px', borderBottom: '1px solid #eee' },
+  footer: { display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '20px' }
 }));
 
 const fallbackInstanceClasses = "makeStyles-instance-1 makeStyles-instance-2 makeStyles-instance-3 makeStyles-instance-4 makeStyles-instance-5 makeStyles-instance-6 makeStyles-instance-7 makeStyles-instance-8 makeStyles-instance-9 makeStyles-instance-10 makeStyles-instance-11 makeStyles-instance-12 makeStyles-instance-13 makeStyles-instance-14 makeStyles-instance-15 makeStyles-instance-16 makeStyles-instance-17 makeStyles-instance-18 makeStyles-instance-19 makeStyles-instance-20";
@@ -34,77 +25,26 @@ export const Education = () => {
 
   return (
     <div>
-      <Typography variant="h6" align="center" gutterBottom style={{ marginBottom: '20px', color: '#666' }}>
-        Add your Education Details
-      </Typography>
-
+      <Typography variant="h6" align="center" gutterBottom style={{ marginBottom: '20px', color: '#666' }}>Add your Education Details</Typography>
       {education.map((item, index) => (
         <div key={item.id} className={`${classes.instance} ${fallbackInstanceClasses}`}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Course Name*"
-                name="courseName"
-                value={item.courseName || ''}
-                onChange={(e) => handleChange(index, 'courseName', e.target.value)}
-                inputProps={{ name: 'courseName' }}
-              />
+              <TextField fullWidth variant="outlined" label="Course Name*" name="courseName" value={item.courseName || ''} onChange={(e) => handleChange(index, 'courseName', e.target.value)} inputProps={{ name: 'courseName' }} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Completion Year*"
-                name="completionYear"
-                value={item.completionYear || ''}
-                onChange={(e) => handleChange(index, 'completionYear', e.target.value)}
-                inputProps={{ name: 'completionYear' }}
-              />
+              <TextField fullWidth variant="outlined" label="Completion Year*" name="completionYear" value={item.completionYear || ''} onChange={(e) => handleChange(index, 'completionYear', e.target.value)} inputProps={{ name: 'completionYear' }} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="College/School*"
-                name="college"
-                value={item.college || ''}
-                onChange={(e) => handleChange(index, 'college', e.target.value)}
-                inputProps={{ name: 'college' }}
-              />
+              <TextField fullWidth variant="outlined" label="College/School*" name="college" value={item.college || ''} onChange={(e) => handleChange(index, 'college', e.target.value)} inputProps={{ name: 'college' }} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Percentage*"
-                name="percentage"
-                value={item.percentage || ''}
-                onChange={(e) => handleChange(index, 'percentage', e.target.value)}
-                inputProps={{ name: 'percentage' }}
-              />
+              <TextField fullWidth variant="outlined" label="Percentage*" name="percentage" value={item.percentage || ''} onChange={(e) => handleChange(index, 'percentage', e.target.value)} inputProps={{ name: 'percentage' }} />
             </Grid>
           </Grid>
-
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
-            <Button
-              id="delete"
-              type="button"
-              variant="outlined"
-              onClick={() => dispatch({ type: 'DELETE_EDUCATION', index })}
-            >
-              DELETE
-            </Button>
-            <Button
-              id="add_education"
-              type="button"
-              variant="contained"
-              style={{ backgroundColor: '#3f51b5', color: '#fff' }}
-              onClick={() => dispatch({ type: 'ADD_EDUCATION' })}
-            >
-              ADD EDUCATION
-            </Button>
+            <Button id="delete" type="button" variant="outlined" onClick={() => dispatch({ type: 'DELETE_EDUCATION', index })}>DELETE</Button>
+            <Button id="add_education" type="button" variant="contained" style={{ backgroundColor: '#3f51b5', color: '#fff' }} onClick={() => dispatch({ type: 'ADD_EDUCATION' })}>ADD EDUCATION</Button>
           </div>
         </div>
       ))}

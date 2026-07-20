@@ -8,7 +8,7 @@ import { Projects } from './components/Projects';
 import { SocialMedia } from './components/SocialMedia';
 import { FinalResume } from './components/FinalResume';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   navigation: {
     display: 'flex',
     justifyContent: 'center',
