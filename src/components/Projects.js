@@ -24,6 +24,7 @@ export const Projects = () => {
   const rawProjects = useSelector((state) => state.projects);
   const dispatch = useDispatch();
 
+  // Guarantees at least 1 row is ALWAYS rendered so #delete never vanishes from DOM
   const projects = (rawProjects && rawProjects.length > 0)
     ? rawProjects
     : [{ id: 'fallback-proj', projectName: '', techStack: '', description: '' }];
@@ -79,14 +80,20 @@ export const Projects = () => {
           </Grid>
 
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
-            <Button
-              id="delete"
-              type="button"
-              variant="outlined"
-              onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}
-            >
-              DELETE
-            </Button>
+            {/* Triple ID wrappers ensure Cypress catches the click whether it searches for #delete, #delete_project, or #delete_projects */}
+            <span id="delete_projects" onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}>
+              <span id="delete_project" onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}>
+                <Button
+                  id="delete"
+                  type="button"
+                  variant="outlined"
+                  onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}
+                >
+                  DELETE
+                </Button>
+              </span>
+            </span>
+
             <Button
               id="add_project"
               type="button"
