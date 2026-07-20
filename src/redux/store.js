@@ -13,7 +13,7 @@ const rootReducer = (state = initialState, action) => {
     case 'UPDATE_PROFILE':
       return { ...state, profile: { ...state.profile, [action.field]: action.value } };
 
-    // --- EDUCATION ACTIONS ---
+    // --- EDUCATION ---
     case 'ADD_EDUCATION':
       return {
         ...state,
@@ -34,7 +34,7 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    // --- SKILLS ACTIONS ---
+    // --- SKILLS ---
     case 'ADD_SKILL':
       return {
         ...state,
@@ -55,7 +55,7 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    // --- PROJECTS ACTIONS ---
+    // --- PROJECTS ---
     case 'ADD_PROJECT':
       return {
         ...state,
@@ -76,7 +76,7 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-    // --- SOCIAL MEDIA ACTIONS ---
+    // --- SOCIAL MEDIA ---
     case 'ADD_SOCIAL':
       return {
         ...state,

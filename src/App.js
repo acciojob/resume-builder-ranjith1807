@@ -62,31 +62,13 @@ export default function App() {
 
           {activeStep < 5 && (
             <div className={classes.navigation}>
-              <Button
-                id="back"
-                type="button"
-                variant="text"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-              >
+              <Button id="back" type="button" variant="text" disabled={activeStep === 0} onClick={handleBack}>
                 BACK
               </Button>
-              <Button
-                id="next"
-                type="button"
-                variant="contained"
-                style={{ backgroundColor: '#ff0055', color: '#fff' }}
-                onClick={handleNext}
-              >
+              <Button id="next" type="button" variant="contained" style={{ backgroundColor: '#ff0055', color: '#fff' }} onClick={handleNext}>
                 NEXT
               </Button>
-              <Button
-                id="save_continue"
-                type="button"
-                variant="contained"
-                style={{ backgroundColor: '#ff0055', color: '#fff' }}
-                onClick={handleSaveToDatabase}
-              >
+              <Button id="save_continue" type="button" variant="contained" style={{ backgroundColor: '#ff0055', color: '#fff' }} onClick={handleSaveToDatabase}>
                 SAVE AND CONTINUE
               </Button>
             </div>
