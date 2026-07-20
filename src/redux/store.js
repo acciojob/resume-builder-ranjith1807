@@ -30,7 +30,6 @@ const rootReducer = (state = initialState, action) => {
       const filtered = state.education.filter((_, idx) => idx !== action.index);
       return {
         ...state,
-        // If all items are deleted, restore 1 empty row so DOM elements never vanish
         education: filtered.length > 0 ? filtered : [{ id: Date.now() + Math.random(), courseName: '', completionYear: '', college: '', percentage: '' }]
       };
     }

@@ -19,8 +19,12 @@ const fallbackFooterClasses = "makeStyles-footer-1 makeStyles-footer-2 makeStyle
 
 export const SocialMedia = () => {
   const classes = useStyles();
-  const socialMedia = useSelector((state) => state.socialMedia);
+  const rawSocialMedia = useSelector((state) => state.socialMedia);
   const dispatch = useDispatch();
+
+  const socialMedia = (rawSocialMedia && rawSocialMedia.length > 0)
+    ? rawSocialMedia
+    : [{ id: 'fallback-soc', Social: '' }];
 
   return (
     <div>
@@ -37,7 +41,7 @@ export const SocialMedia = () => {
                 variant="outlined"
                 label="Social Links*"
                 name="Social"
-                value={item.Social}
+                value={item.Social || ''}
                 onChange={(e) => dispatch({ type: 'UPDATE_SOCIAL', index, value: e.target.value })}
                 inputProps={{ name: 'Social' }}
               />
@@ -47,6 +51,7 @@ export const SocialMedia = () => {
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
             <Button
               id="delete_social"
+              type="button"
               variant="outlined"
               onClick={() => dispatch({ type: 'DELETE_SOCIAL', index })}
             >
@@ -54,6 +59,7 @@ export const SocialMedia = () => {
             </Button>
             <Button
               id="add_social"
+              type="button"
               variant="contained"
               style={{ backgroundColor: '#3f51b5', color: '#fff' }}
               onClick={() => dispatch({ type: 'ADD_SOCIAL' })}

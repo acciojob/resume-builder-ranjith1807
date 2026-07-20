@@ -81,6 +81,7 @@ export const Projects = () => {
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
             <Button
               id="delete"
+              type="button"
               variant="outlined"
               onClick={() => dispatch({ type: 'DELETE_PROJECT', index })}
             >
@@ -88,6 +89,7 @@ export const Projects = () => {
             </Button>
             <Button
               id="add_project"
+              type="button"
               variant="contained"
               style={{ backgroundColor: '#3f51b5', color: '#fff' }}
               onClick={() => dispatch({ type: 'ADD_PROJECT' })}

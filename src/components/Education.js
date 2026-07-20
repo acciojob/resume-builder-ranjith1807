@@ -24,7 +24,6 @@ export const Education = () => {
   const rawEducation = useSelector((state) => state.education);
   const dispatch = useDispatch();
 
-  // Guarantees at least 1 row is always present in the DOM for Cypress to find
   const education = (rawEducation && rawEducation.length > 0)
     ? rawEducation
     : [{ id: 'fallback-edu', courseName: '', completionYear: '', college: '', percentage: '' }];
@@ -91,6 +90,7 @@ export const Education = () => {
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
             <Button
               id="delete"
+              type="button"
               variant="outlined"
               onClick={() => dispatch({ type: 'DELETE_EDUCATION', index })}
             >
@@ -98,6 +98,7 @@ export const Education = () => {
             </Button>
             <Button
               id="add_education"
+              type="button"
               variant="contained"
               style={{ backgroundColor: '#3f51b5', color: '#fff' }}
               onClick={() => dispatch({ type: 'ADD_EDUCATION' })}

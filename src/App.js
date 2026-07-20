@@ -64,6 +64,7 @@ export default function App() {
             <div className={classes.navigation}>
               <Button
                 id="back"
+                type="button"
                 variant="text"
                 disabled={activeStep === 0}
                 onClick={handleBack}
@@ -72,6 +73,7 @@ export default function App() {
               </Button>
               <Button
                 id="next"
+                type="button"
                 variant="contained"
                 style={{ backgroundColor: '#ff0055', color: '#fff' }}
                 onClick={handleNext}
@@ -80,6 +82,7 @@ export default function App() {
               </Button>
               <Button
                 id="save_continue"
+                type="button"
                 variant="contained"
                 style={{ backgroundColor: '#ff0055', color: '#fff' }}
                 onClick={handleSaveToDatabase}

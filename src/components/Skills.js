@@ -51,6 +51,7 @@ export const Skills = () => {
           <div className={`${classes.footer} ${fallbackFooterClasses}`}>
             <Button
               id="delete_skill"
+              type="button"
               variant="outlined"
               onClick={() => dispatch({ type: 'DELETE_SKILL', index })}
             >
@@ -58,6 +59,7 @@ export const Skills = () => {
             </Button>
             <Button
               id="add_skill"
+              type="button"
               variant="contained"
               style={{ backgroundColor: '#3f51b5', color: '#fff' }}
               onClick={() => dispatch({ type: 'ADD_SKILL' })}
