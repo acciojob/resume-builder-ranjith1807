@@ -26,11 +26,14 @@ const rootReducer = (state = initialState, action) => {
           idx === action.index ? { ...item, [action.field]: action.value } : item
         )
       };
-    case 'DELETE_EDUCATION':
+    case 'DELETE_EDUCATION': {
+      const filtered = state.education.filter((_, idx) => idx !== action.index);
       return {
         ...state,
-        education: state.education.filter((_, idx) => idx !== action.index)
+        // If all items are deleted, restore 1 empty row so DOM elements never vanish
+        education: filtered.length > 0 ? filtered : [{ id: Date.now() + Math.random(), courseName: '', completionYear: '', college: '', percentage: '' }]
       };
+    }
 
     // --- SKILLS ACTIONS ---
     case 'ADD_SKILL':
@@ -45,11 +48,13 @@ const rootReducer = (state = initialState, action) => {
           idx === action.index ? { ...item, skill: action.value } : item
         )
       };
-    case 'DELETE_SKILL':
+    case 'DELETE_SKILL': {
+      const filtered = state.skills.filter((_, idx) => idx !== action.index);
       return {
         ...state,
-        skills: state.skills.filter((_, idx) => idx !== action.index)
+        skills: filtered.length > 0 ? filtered : [{ id: Date.now() + Math.random(), skill: '' }]
       };
+    }
 
     // --- PROJECTS ACTIONS ---
     case 'ADD_PROJECT':
@@ -64,11 +69,13 @@ const rootReducer = (state = initialState, action) => {
           idx === action.index ? { ...item, [action.field]: action.value } : item
         )
       };
-    case 'DELETE_PROJECT':
+    case 'DELETE_PROJECT': {
+      const filtered = state.projects.filter((_, idx) => idx !== action.index);
       return {
         ...state,
-        projects: state.projects.filter((_, idx) => idx !== action.index)
+        projects: filtered.length > 0 ? filtered : [{ id: Date.now() + Math.random(), projectName: '', techStack: '', description: '' }]
       };
+    }
 
     // --- SOCIAL MEDIA ACTIONS ---
     case 'ADD_SOCIAL':
@@ -83,11 +90,13 @@ const rootReducer = (state = initialState, action) => {
           idx === action.index ? { ...item, Social: action.value } : item
         )
       };
-    case 'DELETE_SOCIAL':
+    case 'DELETE_SOCIAL': {
+      const filtered = state.socialMedia.filter((_, idx) => idx !== action.index);
       return {
         ...state,
-        socialMedia: state.socialMedia.filter((_, idx) => idx !== action.index)
+        socialMedia: filtered.length > 0 ? filtered : [{ id: Date.now() + Math.random(), Social: '' }]
       };
+    }
 
     case 'LOAD_RESUME':
       return action.payload;
