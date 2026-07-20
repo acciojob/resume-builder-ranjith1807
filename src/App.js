@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Stepper, Step, StepLabel, Container, Paper, Typography, Box } from '@material-ui/core';
+import { Button, Stepper, Step, StepLabel, Container, Paper, Typography, Box, makeStyles } from '@material-ui/core';
 import { Profile } from './components/Profile';
 import { Education } from './components/Education';
 import { Skills } from './components/Skills';
@@ -8,9 +8,19 @@ import { Projects } from './components/Projects';
 import { SocialMedia } from './components/SocialMedia';
 import { FinalResume } from './components/FinalResume';
 
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '15px',
+    marginTop: '30px'
+  }
+}));
+
 const steps = ['Profile Section', 'Education Section', 'Skills Sector', 'Mini Project', 'Social'];
 
 export default function App() {
+  const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const state = useSelector((s) => s);
   const dispatch = useDispatch();
@@ -25,14 +35,12 @@ export default function App() {
 
   return (
     <div style={{ backgroundColor: '#f5f5f5', minHeight: '100vh', paddingBottom: '40px' }}>
-      {/* Magenta Header Banner */}
       <Box style={{ backgroundColor: '#ff0055', padding: '15px 0', textAlign: 'center', color: '#fff' }}>
         <Typography variant="h5" style={{ fontWeight: 'bold' }}>RESUME GENERATOR</Typography>
       </Box>
 
       <Container maxWidth="md" style={{ marginTop: '20px' }}>
         <Paper style={{ padding: '20px' }}>
-          {/* Progress Stepper */}
           {activeStep < 5 && (
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((label) => (
@@ -43,7 +51,6 @@ export default function App() {
             </Stepper>
           )}
 
-          {/* Page Views */}
           <Box style={{ margin: '30px 0' }}>
             {activeStep === 0 && <Profile />}
             {activeStep === 1 && <Education />}
@@ -53,9 +60,8 @@ export default function App() {
             {activeStep === 5 && <FinalResume />}
           </Box>
 
-          {/* Navigation Buttons (Screenshots 189-193) */}
           {activeStep < 5 && (
-            <Box display="flex" justifyContent="center" gridGap="10px" marginTop="30px">
+            <div className={classes.footer}>
               <Button
                 id="back"
                 variant="text"
@@ -80,7 +86,7 @@ export default function App() {
               >
                 SAVE AND CONTINUE
               </Button>
-            </Box>
+            </div>
           )}
         </Paper>
       </Container>

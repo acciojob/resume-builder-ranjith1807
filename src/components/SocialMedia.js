@@ -1,8 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, Button, Grid, Box, Typography } from '@material-ui/core';
+import { TextField, Button, Grid, Box, Typography, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '15px',
+    marginTop: '15px'
+  },
+  body: {
+    marginBottom: '20px'
+  }
+}));
 
 export const SocialMedia = () => {
+  const classes = useStyles();
   const socialMedia = useSelector((state) => state.socialMedia);
   const dispatch = useDispatch();
 
@@ -13,7 +26,7 @@ export const SocialMedia = () => {
       </Typography>
 
       {socialMedia.map((item, index) => (
-        <Box key={item.id} style={{ marginBottom: '20px' }}>
+        <div key={item.id} className={classes.body}>
           <Grid container spacing={3} justify="center">
             <Grid item xs={12} sm={8}>
               <TextField
@@ -23,11 +36,12 @@ export const SocialMedia = () => {
                 name="Social"
                 value={item.Social}
                 onChange={(e) => dispatch({ type: 'UPDATE_SOCIAL', index, value: e.target.value })}
+                inputProps={{ name: 'Social' }}
               />
             </Grid>
           </Grid>
 
-          <Box display="flex" justifyContent="center" gridGap="15px" marginTop="15px">
+          <div className={classes.footer}>
             <Button
               id="delete_social"
               variant="outlined"
@@ -43,8 +57,8 @@ export const SocialMedia = () => {
             >
               ADD SOCIAL
             </Button>
-          </Box>
-        </Box>
+          </div>
+        </div>
       ))}
     </div>
   );

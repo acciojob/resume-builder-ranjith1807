@@ -1,8 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, Button, Grid, Box, Typography } from '@material-ui/core';
+import { TextField, Button, Grid, Box, Typography, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '15px',
+    marginTop: '20px'
+  },
+  body: {
+    marginBottom: '25px',
+    paddingBottom: '15px',
+    borderBottom: '1px solid #eee'
+  }
+}));
 
 export const Education = () => {
+  const classes = useStyles();
   const education = useSelector((state) => state.education);
   const dispatch = useDispatch();
 
@@ -17,7 +32,7 @@ export const Education = () => {
       </Typography>
 
       {education.map((item, index) => (
-        <Box key={item.id} style={{ marginBottom: '25px', paddingBottom: '15px', borderBottom: '1px solid #eee' }}>
+        <div key={item.id} className={classes.body}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -27,6 +42,7 @@ export const Education = () => {
                 name="courseName"
                 value={item.courseName}
                 onChange={(e) => handleChange(index, 'courseName', e.target.value)}
+                inputProps={{ name: 'courseName' }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -37,6 +53,7 @@ export const Education = () => {
                 name="completionYear"
                 value={item.completionYear}
                 onChange={(e) => handleChange(index, 'completionYear', e.target.value)}
+                inputProps={{ name: 'completionYear' }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -47,6 +64,7 @@ export const Education = () => {
                 name="college"
                 value={item.college}
                 onChange={(e) => handleChange(index, 'college', e.target.value)}
+                inputProps={{ name: 'college' }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -57,11 +75,12 @@ export const Education = () => {
                 name="percentage"
                 value={item.percentage}
                 onChange={(e) => handleChange(index, 'percentage', e.target.value)}
+                inputProps={{ name: 'percentage' }}
               />
             </Grid>
           </Grid>
 
-          <Box display="flex" justifyContent="center" gridGap="15px" marginTop="20px">
+          <div className={classes.footer}>
             <Button
               id="delete"
               variant="outlined"
@@ -77,8 +96,8 @@ export const Education = () => {
             >
               ADD EDUCATION
             </Button>
-          </Box>
-        </Box>
+          </div>
+        </div>
       ))}
     </div>
   );

@@ -1,8 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, Button, Grid, Box, Typography } from '@material-ui/core';
+import { TextField, Button, Grid, Box, Typography, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '15px',
+    marginTop: '20px'
+  },
+  body: {
+    marginBottom: '25px',
+    paddingBottom: '15px',
+    borderBottom: '1px solid #eee'
+  }
+}));
 
 export const Projects = () => {
+  const classes = useStyles();
   const projects = useSelector((state) => state.projects);
   const dispatch = useDispatch();
 
@@ -17,7 +32,7 @@ export const Projects = () => {
       </Typography>
 
       {projects.map((item, index) => (
-        <Box key={item.id} style={{ marginBottom: '25px', paddingBottom: '15px', borderBottom: '1px solid #eee' }}>
+        <div key={item.id} className={classes.body}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -27,6 +42,7 @@ export const Projects = () => {
                 name="projectName"
                 value={item.projectName}
                 onChange={(e) => handleChange(index, 'projectName', e.target.value)}
+                inputProps={{ name: 'projectName' }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -37,6 +53,7 @@ export const Projects = () => {
                 name="techStack"
                 value={item.techStack}
                 onChange={(e) => handleChange(index, 'techStack', e.target.value)}
+                inputProps={{ name: 'techStack' }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -45,13 +62,16 @@ export const Projects = () => {
                 variant="outlined"
                 label="Description"
                 name="description"
+                multiline
+                rows={3}
                 value={item.description}
                 onChange={(e) => handleChange(index, 'description', e.target.value)}
+                inputProps={{ name: 'description' }}
               />
             </Grid>
           </Grid>
 
-          <Box display="flex" justifyContent="center" gridGap="15px" marginTop="20px">
+          <div className={classes.footer}>
             <Button
               id="delete"
               variant="outlined"
@@ -67,8 +87,8 @@ export const Projects = () => {
             >
               ADD PROJECT
             </Button>
-          </Box>
-        </Box>
+          </div>
+        </div>
       ))}
     </div>
   );
