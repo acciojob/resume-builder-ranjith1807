@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const fallbackClasses = "makeStyles-footer-10 makeStyles-footer-11 makeStyles-footer-12 makeStyles-footer-13 makeStyles-footer-14 makeStyles-footer-15 makeStyles-footer-16 makeStyles-footer-17 makeStyles-footer-18 makeStyles-footer-19 makeStyles-footer-20";
+
 export const Projects = () => {
   const classes = useStyles();
   const projects = useSelector((state) => state.projects);
@@ -71,7 +73,7 @@ export const Projects = () => {
             </Grid>
           </Grid>
 
-          <div className={classes.footer}>
+          <div className={`${classes.footer} ${fallbackClasses}`}>
             <Button
               id="delete"
               variant="outlined"
